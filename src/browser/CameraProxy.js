@@ -113,8 +113,10 @@ function capture (success, errorCallback, opts) {
 
     if (navigator.getUserMedia) {
         navigator.getUserMedia({video: true, audio: false}, successCallback, errorCallback);
-    } else {
-        alert('Browser does not support camera :(');
+    } else if(navigator.mediaDevices.getUserMedia){
+        navigator.mediaDevices.getUserMedia({video: true, audio: false}, successCallback, errorCallback);
+    }else{
+        console.log('Browser does not support camera :(');
     }
 }
 
